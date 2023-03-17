@@ -4,15 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gunter.bankuishchallenge.data.repositories.GitRepository
-import com.gunter.bankuishchallenge.domain.model.Repository
+import com.gunter.bankuishchallenge.domain.models.Repository
+import com.gunter.bankuishchallenge.domain.usecases.GetRepositoriesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val hubRepository: GitRepository
+    private val getRepositoriesUseCase: GetRepositoriesUseCase
 ) : ViewModel() {
 
     private var page: Int = 1
@@ -32,7 +32,7 @@ class HomeViewModel @Inject constructor(
     private fun getRepositories() {
         viewModelScope.launch {
             _isLoading.postValue(true)
-            val results = hubRepository.getRepositories("kotlin", 20, page)
+            val results = getRepositoriesUseCase.execute("kotlin", 20, page)
 
             _isLoading.postValue(false)
 

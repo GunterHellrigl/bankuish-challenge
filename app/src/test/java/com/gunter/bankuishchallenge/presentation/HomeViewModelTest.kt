@@ -1,15 +1,11 @@
 package com.gunter.bankuishchallenge.presentation
 
-import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.gunter.bankuishchallenge.data.model.ResponseRetrofitGithub
-import com.gunter.bankuishchallenge.data.repositories.GitHubRepository
-import com.gunter.bankuishchallenge.domain.model.Repository
+import com.gunter.bankuishchallenge.domain.models.Repository
+import com.gunter.bankuishchallenge.domain.usecases.GetRepositoriesUseCase
 import com.gunter.bankuishchallenge.presentation.home.HomeViewModel
 import io.mockk.coEvery
-import io.mockk.every
 import io.mockk.mockk
-import io.mockk.mockkStatic
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.resetMain
@@ -37,12 +33,12 @@ class HomeViewModelTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testGetRepositoriesFromStart() = runTest {
-        val repository = mockk<GitHubRepository>()
+        val useCase = mockk<GetRepositoriesUseCase>()
         val repositories = listOf<Repository>()
 
-        coEvery { repository.getRepositories(any(), any(), any()) } returns repositories
+        coEvery { useCase.execute(any(), any(), any()) } returns repositories
 
-        val viewModel = HomeViewModel(repository)
+        val viewModel = HomeViewModel(useCase)
         viewModel.getRepositoriesFromStart()
 
         Assert.assertEquals(viewModel.repositories.value, repositories)
@@ -51,12 +47,12 @@ class HomeViewModelTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testGetRepositoriesFromStartWithNull() = runTest {
-        val repository = mockk<GitHubRepository>()
+        val useCase = mockk<GetRepositoriesUseCase>()
         val repositories = listOf<Repository>()
 
-        coEvery { repository.getRepositories(any(), any(), any()) } returns null
+        coEvery { useCase.execute(any(), any(), any()) } returns null
 
-        val viewModel = HomeViewModel(repository)
+        val viewModel = HomeViewModel(useCase)
         viewModel.getRepositoriesFromStart()
 
         val pageField = viewModel.javaClass.getDeclaredField("page")
@@ -73,12 +69,12 @@ class HomeViewModelTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testGetRepositoriesFromNewPage() = runTest {
-        val repository = mockk<GitHubRepository>()
+        val useCase = mockk<GetRepositoriesUseCase>()
         val repositories = listOf<Repository>()
 
-        coEvery { repository.getRepositories(any(), any(), any()) } returns repositories
+        coEvery { useCase.execute(any(), any(), any()) } returns repositories
 
-        val viewModel = HomeViewModel(repository)
+        val viewModel = HomeViewModel(useCase)
         viewModel.getRepositoriesFromNewPage()
 
         val pageField = viewModel.javaClass.getDeclaredField("page")
@@ -92,12 +88,12 @@ class HomeViewModelTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testGetRepositoriesFromNewPageWithNull() = runTest {
-        val repository = mockk<GitHubRepository>()
+        val useCase = mockk<GetRepositoriesUseCase>()
         val repositories = listOf<Repository>()
 
-        coEvery { repository.getRepositories(any(), any(), any()) } returns null
+        coEvery { useCase.execute(any(), any(), any()) } returns null
 
-        val viewModel = HomeViewModel(repository)
+        val viewModel = HomeViewModel(useCase)
         viewModel.getRepositoriesFromNewPage()
 
         val pageField = viewModel.javaClass.getDeclaredField("page")
