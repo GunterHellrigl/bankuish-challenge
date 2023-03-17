@@ -1,17 +1,16 @@
 package com.gunter.bankuishchallenge.presentation.home
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.Gson
 import com.gunter.bankuishchallenge.databinding.FragmentHomeBinding
-import com.gunter.bankuishchallenge.domain.model.Repository
 import com.gunter.bankuishchallenge.presentation.adapters.RepositoriesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -21,20 +20,9 @@ class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var onRepositoryClickListener: OnRepositoryClickListener
 
     @Inject
     lateinit var adapter: RepositoriesAdapter
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        try {
-            onRepositoryClickListener = context as OnRepositoryClickListener
-        } catch (e: ClassCastException) {
-            throw ClassCastException("$context must implement OnRepositoryClickListener")
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +36,10 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         adapter.setListener {
-            onRepositoryClickListener.onRepositoryClick(it)
+            val action = HomeFragmentDirections.actionHomeFragmentToRepositoryDetailsFragment(
+                Gson().toJson(it)
+            )
+            findNavController().navigate(action)
         }
 
         binding.swipeRefresh.setOnRefreshListener {
@@ -67,7 +58,6 @@ class HomeFragment : Fragment() {
             if (viewModel.isLoading.value == false && (visibleItemsCount + firstVisibleItemPosition) >= totalItemsCount
                 && firstVisibleItemPosition >= 0 && totalItemsCount >= 20
             ) {
-                Log.e("Gunter", "Load more items")
                 viewModel.getRepositoriesFromNewPage()
             }
         }
@@ -81,8 +71,7 @@ class HomeFragment : Fragment() {
                     binding.rvRepositories,
                     "Ups.. something is wrong",
                     Snackbar.LENGTH_SHORT
-                )
-                    .show()
+                ).show()
             }
         }
         viewModel.repositories.observe(viewLifecycleOwner) {
@@ -92,8 +81,4 @@ class HomeFragment : Fragment() {
 
         viewModel.getRepositoriesFromStart()
     }
-}
-
-interface OnRepositoryClickListener {
-    fun onRepositoryClick(repository: Repository)
 }
