@@ -11,7 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.google.gson.Gson
 import com.gunter.bankuishchallenge.R
 import com.gunter.bankuishchallenge.databinding.FragmentRepositorydetailsBinding
-import com.gunter.bankuishchallenge.domain.model.Repository
+import com.gunter.bankuishchallenge.domain.models.Repository
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

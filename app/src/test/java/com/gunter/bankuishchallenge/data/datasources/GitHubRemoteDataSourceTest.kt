@@ -1,6 +1,6 @@
 package com.gunter.bankuishchallenge.data.datasources
 
-import com.gunter.bankuishchallenge.data.model.ResponseRetrofitGithub
+import com.gunter.bankuishchallenge.data.models.ResponseRetrofitGithub
 import com.gunter.bankuishchallenge.data.retrofit.RetrofitClient
 import io.mockk.coEvery
 import io.mockk.every

@@ -1,6 +1,6 @@
 package com.gunter.bankuishchallenge.data.retrofit
 
-import com.gunter.bankuishchallenge.data.model.ResponseRetrofitGithub
+import com.gunter.bankuishchallenge.data.models.ResponseRetrofitGithub
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

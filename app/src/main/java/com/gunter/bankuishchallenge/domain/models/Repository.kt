@@ -1,4 +1,4 @@
-package com.gunter.bankuishchallenge.domain.model
+package com.gunter.bankuishchallenge.domain.models
 
 data class Repository(
     val id: Int,

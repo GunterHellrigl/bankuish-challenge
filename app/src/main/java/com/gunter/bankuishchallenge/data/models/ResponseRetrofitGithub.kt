@@ -1,7 +1,7 @@
-package com.gunter.bankuishchallenge.data.model
+package com.gunter.bankuishchallenge.data.models
 
 import com.google.gson.annotations.SerializedName
-import com.gunter.bankuishchallenge.domain.model.Repository
+import com.gunter.bankuishchallenge.domain.models.Repository
 
 sealed class ResponseRetrofitGithub {
     data class GetAllRepositories(

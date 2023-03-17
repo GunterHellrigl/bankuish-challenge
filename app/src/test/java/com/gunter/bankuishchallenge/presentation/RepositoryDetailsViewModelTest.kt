@@ -1,7 +1,7 @@
 package com.gunter.bankuishchallenge.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.gunter.bankuishchallenge.domain.model.Repository
+import com.gunter.bankuishchallenge.domain.models.Repository
 import com.gunter.bankuishchallenge.presentation.repositorydetails.RepositoryDetailsViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

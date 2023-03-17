@@ -1,8 +1,8 @@
 package com.gunter.bankuishchallenge.data.datasources
 
-import com.gunter.bankuishchallenge.data.model.toDomain
+import com.gunter.bankuishchallenge.data.models.toDomain
 import com.gunter.bankuishchallenge.data.retrofit.RetrofitClient
-import com.gunter.bankuishchallenge.domain.model.Repository
+import com.gunter.bankuishchallenge.domain.models.Repository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

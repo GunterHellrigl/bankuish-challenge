@@ -1,7 +1,8 @@
 package com.gunter.bankuishchallenge.data.repositories
 
 import com.gunter.bankuishchallenge.data.datasources.GitRemoteDataSource
-import com.gunter.bankuishchallenge.domain.model.Repository
+import com.gunter.bankuishchallenge.domain.models.Repository
+import com.gunter.bankuishchallenge.domain.repositories.GitRepository
 import javax.inject.Inject
 
 class GitHubRepository @Inject constructor(

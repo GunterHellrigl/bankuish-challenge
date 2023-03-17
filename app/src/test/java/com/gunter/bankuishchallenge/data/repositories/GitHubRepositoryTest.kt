@@ -1,7 +1,7 @@
 package com.gunter.bankuishchallenge.data.repositories
 
 import com.gunter.bankuishchallenge.data.datasources.GitHubRemoteDataSource
-import com.gunter.bankuishchallenge.domain.model.Repository
+import com.gunter.bankuishchallenge.domain.models.Repository
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gunter.bankuishchallenge.databinding.ItemRepositoryBinding
-import com.gunter.bankuishchallenge.domain.model.Repository
+import com.gunter.bankuishchallenge.domain.models.Repository
 import javax.inject.Inject
 
 class RepositoriesAdapter @Inject constructor() : RecyclerView.Adapter<RepositoryViewHolder>() {
